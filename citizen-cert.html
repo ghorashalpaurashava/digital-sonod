@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নাগরিকত্ব সনদ - প্রিন্ট কপি</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
+        body { background: #e2e8f0; padding: 20px; }
+
+        .certificate-container { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 20mm; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; border: 5px double #006a4e; }
+        .cert-header { text-align: center; border-bottom: 2px solid #006a4e; padding-bottom: 15px; margin-bottom: 20px; }
+        .cert-header h1 { font-size: 22px; color: #006a4e; font-weight: bold; }
+        .cert-header h2 { font-size: 16px; color: #334155; margin-top: 5px; }
+        .cert-header p { font-size: 12px; color: #64748b; }
+
+        .cert-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 30px; }
+        .cert-title-box { text-align: center; margin-bottom: 25px; }
+        .cert-title-box span { background: #006a4e; color: #fff; padding: 6px 20px; font-size: 15px; font-weight: bold; border-radius: 4px; }
+        .cert-body { font-size: 14px; line-height: 2; color: #1e293b; text-align: justify; margin-bottom: 40px; }
+
+        .signatures { display: flex; justify-content: space-between; margin-top: 80px; font-size: 13px; text-align: center; }
+        .sig-line { border-top: 1px solid #334155; width: 180px; padding-top: 5px; margin-top: 40px; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .certificate-container { box-shadow: none; border: 5px double #006a4e; width: 100%; height: 100%; }
+            .no-print { display: none; }
+        }
+
+        .print-btn-bar { text-align: center; margin-bottom: 20px; }
+        .btn-print { background: #006a4e; color: #fff; border: none; padding: 10px 25px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .btn-print:hover { background: #004d37; }
+    </style>
+</head>
+<body>
+
+    <div class="print-btn-bar no-print">
+        <button class="btn-print" onclick="window.print()">🖨️ এই সনদটি প্রিন্ট করুন</button>
+        <a href="dashboard.html" style="margin-left: 10px; text-decoration: none; color: #334155; font-size: 13px;">← ড্যাশবোর্ডে ফিরে যান</a>
+    </div>
+
+    <div class="certificate-container">
+        <div class="cert-header">
+            <h1>চরসিন্দুর ইউনিয়ন পরিষদ / ঘোড়াশাল পৌরসভা</h1>
+            <h2>পলাশ, নরসিংদী।</h2>
+            <p>ওয়েবসাইট: www.eparishad.com</p>
+        </div>
+
+        <div class="cert-meta">
+            <div>স্মারক নং: CP-2026-0842</div>
+            <div>তারিখ: ১৪ নভেম্বর, ২০২৬</div>
+        </div>
+
+        <div class="cert-title-box">
+            <span>নাগরিকত্ব সনদপত্র</span>
+        </div>
+
+        <div class="cert-body">
+            এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong>জনাব মো: ইশতিয়াক জাহান মাহিন</strong>, পিতা: মো: পনির ভূঁইয়া, মাতা: নাজমা সুলতানা, গ্রাম/হোল্ডিং: দারিহাওলাপাড়া, ডাকঘর: পলাশ - ১৬১০, উপজেলা: পলাশ, জেলা: নরসিংদী জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়নের/পৌরসভার একজন স্থায়ী বাসিন্দা বটে। আমার জানামতে তিনি রাষ্ট্রবিরোধী বা সমাজবিরোধী কোনো কাজের সাথে জড়িত নিতেন এবং তাহার চরিত্র ও সুনাম সন্তোষজনক।<br><br>
+            আমি তাহার সর্বাঙ্গীন সাফল্য ও উজ্জ্বল ভবিষ্যৎ কামনা করি।
+        </div>
+
+        <div class="signatures">
+            <div>
+                <div class="sig-line">সংশ্লিষ্ট ওয়ার্ড সদস্য / সচিব</div>
+            </div>
+            <div>
+                <div class="sig-line">চেয়ারম্যান / মেয়র</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
