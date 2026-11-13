@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রশাসনিক ড্যাশবোর্ড - সেবা নির্বাচন ও যাচাই</title>
+    <title>প্রশাসনিক ড্যাশবোর্ড - ঘোড়াশাল পৌরসভা</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
         body { background-color: #f8fafc; color: #1e293b; }
 
         /* টপ হেডার বার */
-        .top-navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .brand-title { font-size: 15px; font-weight: bold; color: #006a4e; display: flex; align-items: center; gap: 8px; }
-        .user-info { display: flex; align-items: center; gap: 15px; font-size: 13px; color: #475569; }
-        .btn-logout { background: #ef4444; color: #fff; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: bold; }
+        .top-navbar { background: #ffffff; padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        
+        /* প্রোফাইল সেকশন (ছবি ও নাম) */
+        .admin-profile { display: flex; align-items: center; gap: 12px; }
+        .admin-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #006a4e; }
+        .admin-details h4 { font-size: 14px; color: #0f172a; font-weight: bold; }
+        .admin-details p { font-size: 11px; color: #64748b; }
+
+        .btn-logout { background: #ef4444; color: #fff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold; }
+        .btn-logout:hover { background: #dc2626; }
 
         /* মূল কন্টেন্ট এরিয়া */
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 900px; margin: 25px auto; padding: 0 15px; }
         
         .section-header { margin-bottom: 15px; }
         .section-header h2 { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 3px; }
         .section-header p { font-size: 12px; color: #64748b; }
 
-        /* ট্যাব বা ফিল্টার অপশন (এখানে ভেরিফাই অপশন যুক্ত করা হয়েছে) */
+        /* ট্যাব বা ফিল্টার অপশন */
         .tabs-bar { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; flex-wrap: wrap; }
         .tab-btn { background: #e2e8f0; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; color: #334155; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; }
         .tab-btn.active { background: #006a4e; color: #fff; }
@@ -61,11 +67,17 @@
 </head>
 <body>
 
-    <!-- টপ নেভবার -->
+    <!-- টপ নেভবার (প্রোফাইল ছবি ও কার্যালয়ের নাম সহ) -->
     <div class="top-navbar">
-        <div class="brand-title">🏛️ প্রশাসনিক প্যানেল</div>
-        <div class="user-info">
-            <span>অপারেটর (চরসিন্দুর ইউপি)</span>
+        <div class="admin-profile">
+            <!-- এখানে প্রশাসনিক প্রোফাইল ছবি বা লোগো থাকবে -->
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin Profile" class="admin-avatar">
+            <div class="admin-details">
+                <h4>প্রশাসক</h4>
+                <p>ঘোড়াশাল পৌরসভা কার্যালয়</p>
+            </div>
+        </div>
+        <div>
             <a href="login.html" class="btn-logout">লগআউট</a>
         </div>
     </div>
@@ -74,11 +86,11 @@
     <div class="container">
         
         <div class="section-header">
-            <h2>নতুন আবেদন ও সেবা</h2>
-            <p>সনদ নির্বাচন করে আবেদন করুন অথবা যেকোনো সনদ যাচাই করুন</p>
+            <h2>নতুন আবেদন ও সেবা প্যানেল</h2>
+            <p>প্রয়োজনীয় সনদ নির্বাচন করে ফরম পূরণ ও প্রিন্ট করুন</p>
         </div>
 
-        <!-- ওপরের ট্যাব অপশন (এখানে 'সনদ যাচাই' বা ভেরিফাই অপশন যুক্ত করা হয়েছে) -->
+        <!-- ওপরের ট্যাব অপশন -->
         <div class="tabs-bar">
             <a href="dashboard.html" class="tab-btn active">📑 নতুন আবেদন</a>
             <a href="services.html" class="tab-btn">📋 সকল সেবাসমূহ</a>
@@ -86,7 +98,7 @@
             <a href="contact.html" class="tab-btn">📞 যোগাযোগ</a>
         </div>
 
-        <!-- সেবাসমূহের তালিকা (List View) -->
+        <!-- সেবাসমূহের তালিকা -->
         <div class="service-list">
             <a href="service-form.html?type=character" class="service-item">
                 <div class="service-left">
