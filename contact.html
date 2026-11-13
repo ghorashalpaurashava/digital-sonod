@@ -3,68 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>যোগাযোগ - ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</title>
+    <title>যোগাযোগ - ডিজিটাল সেবা প্ল্যাটফর্ম</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
         body { background-color: #f8fafc; color: #1e293b; }
-        .navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
-        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-text h1 { font-size: 15px; color: #006a4e; font-weight: bold; }
-        .logo-text p { font-size: 11px; color: #64748b; }
-        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
+        .brand-container { text-decoration: none; color: #006a4e; font-weight: bold; font-size: 15px; }
+        .nav-links { display: flex; gap: 15px; }
         .nav-links a { text-decoration: none; font-size: 13px; color: #334155; font-weight: 500; }
-        .container { max-width: 1000px; margin: 30px auto; background: #fff; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid #006a4e; }
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h2 { color: #006a4e; font-size: 24px; margin-bottom: 5px; }
-        .header p { color: #64748b; font-size: 13px; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .contact-info h3, .contact-form h3 { font-size: 16px; color: #0f172a; margin-bottom: 15px; border-left: 4px solid #006a4e; padding-left: 8px; }
-        .info-box { margin-bottom: 15px; font-size: 13px; color: #475569; line-height: 1.6; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #334155; }
-        input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        textarea { resize: vertical; height: 100px; }
-        .btn-submit { background: #006a4e; color: #fff; border: none; padding: 11px 20px; font-size: 13px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; }
-        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 15px; font-size: 11px; margin-top: 40px; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 5px solid #006a4e; }
+        h2 { color: #006a4e; font-size: 20px; text-align: center; margin-bottom: 15px; }
+        .info-box { font-size: 13px; color: #475569; line-height: 1.8; }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html" class="brand-container">
-            <div class="logo-text"><h1>ডিজিটাল সেবা প্ল্যাটফর্ম</h1><p>ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</p></div>
-        </a>
+        <a href="index.html" class="brand-container">ডিজিটাল সেবা প্ল্যাটফর্ম</a>
         <div class="nav-links">
             <a href="index.html">হোম</a>
             <a href="services.html">সেবাসমূহ</a>
             <a href="verify.html">সনদ যাচাই</a>
-            <a href="contact.html" style="color: #006a4e; font-weight: bold;">যোগাযোগ</a>
-            <a href="login.html">প্রশাসনিক লগইন</a>
+            <a href="contact.html" style="color:#006a4e; font-weight:bold;">যোগাযোগ</a>
         </div>
     </div>
-
     <div class="container">
-        <div class="header">
-            <h2>আমাদের সাথে যোগাযোগ করুন</h2>
-            <p>য-কোনো প্রয়োজনে বা দাপ্তরিক তথ্যের জন্য নিচের ঠিকানায় যোগাযোগ করুন</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>কার্যালয়ের ঠিকানা ও তথ্য</h3>
-                <div class="info-box"><strong>প্রধান কার্যালয়:</strong><br>উপজেলা পরিষদ / পৌরসভা কার্যালয়, পলাশ, নরসিংদী।</div>
-                <div class="info-box"><strong>হেল্পলাইন / মোবাইল:</strong><br>০১৭১২-৩৪৫৬৭৮ / ০১৮৫৮-৯১৮০০৪</div>
-                <div class="info-box"><strong>ইমেইল ঠিকানা:</strong><br>support@eparishad.com</div>
-            </div>
-            <div class="contact-form">
-                <h3>ম্যাসেজ পাঠান</h3>
-                <form onsubmit="event.preventDefault(); alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে। ধন্যবাদ!');">
-                    <div class="form-group"><label>আপনার নাম</label><input type="text" placeholder="পূর্ণ নাম লিখুন" required></div>
-                    <div class="form-group"><label>মোবাইল নম্বর</label><input type="text" placeholder="01XXXXXXXXX" required></div>
-                    <div class="form-group"><label>আপনার বার্তা (Message)</label><textarea placeholder="আপনার মতামত বা সমস্যা এখানে লিখুন..." required></textarea></div>
-                    <button type="submit" class="btn-submit">বার্তা পাঠান</button>
-                </form>
-            </div>
+        <h2>যোগাযোগের ঠিকানা</h2>
+        <div class="info-box">
+            <strong>প্রধান কার্যালয়:</strong> উপজেলা পরিষদ / পৌরসভা কার্যালয়, পলাশ, নরসিংদী।<br>
+            <strong>হেল্পলাইন:</strong> ০১৮৫৮-৯১৮০০৪ / ০১৭৮১২৩০০২৮<br>
+            <strong>ইমেইল:</strong> support@eparishad.com
         </div>
     </div>
-    <footer><p>&copy; ২০২৬ ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।</p></footer>
 </body>
 </html>
