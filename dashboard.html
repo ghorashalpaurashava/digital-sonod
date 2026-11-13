@@ -3,68 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>অ্যাডমিন ড্যাশবোর্ড - ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</title>
+    <title>প্রশাসনিক ড্যাশবোর্ড - সেবা নির্বাচন ও যাচাই</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
-        body { background-color: #f1f5f9; display: flex; height: 100vh; overflow: hidden; }
+        body { background-color: #f8fafc; color: #1e293b; }
 
-        .sidebar { width: 260px; background: #0f172a; color: #fff; display: flex; flex-direction: column; }
-        .sidebar-brand { padding: 20px; font-size: 16px; font-weight: bold; background: #006a4e; text-align: center; }
-        .sidebar-menu { list-style: none; padding: 20px 0; }
-        .sidebar-menu li a { display: block; padding: 12px 20px; color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.2s; }
-        .sidebar-menu li a:hover, .sidebar-menu li a.active { background: #1e293b; color: #fff; border-left: 4px solid #006a4e; }
+        /* টপ হেডার বার */
+        .top-navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .brand-title { font-size: 15px; font-weight: bold; color: #006a4e; display: flex; align-items: center; gap: 8px; }
+        .user-info { display: flex; align-items: center; gap: 15px; font-size: 13px; color: #475569; }
+        .btn-logout { background: #ef4444; color: #fff; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: bold; }
 
-        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
-        .top-navbar { background: #fff; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
-        .admin-info { font-size: 14px; font-weight: bold; color: #334155; }
-        .btn-logout { background: #ef4444; color: #fff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; }
+        /* মূল কন্টেন্ট এরিয়া */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        
+        .section-header { margin-bottom: 15px; }
+        .section-header h2 { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 3px; }
+        .section-header p { font-size: 12px; color: #64748b; }
 
-        .dashboard-body { padding: 25px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .stat-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 4px solid #006a4e; }
-        .stat-card h3 { font-size: 22px; color: #006a4e; margin-bottom: 5px; }
-        .stat-card p { font-size: 13px; color: #64748b; }
+        /* ট্যাব বা ফিল্টার অপশন (এখানে ভেরিফাই অপশন যুক্ত করা হয়েছে) */
+        .tabs-bar { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; flex-wrap: wrap; }
+        .tab-btn { background: #e2e8f0; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; color: #334155; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .tab-btn.active { background: #006a4e; color: #fff; }
+        .tab-btn:hover { background: #cbd5e1; }
 
-        .quick-action { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .quick-action h3 { font-size: 16px; margin-bottom: 15px; color: #1e293b; }
-        .action-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn-action { background: #006a4e; color: #fff; padding: 10px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; }
-        .btn-action:hover { background: #004d37; }
+        /* সেবার লিস্ট বা রো ডিজাইন */
+        .service-list { display: flex; flex-direction: column; gap: 10px; }
+        
+        .service-item { 
+            background: #ffffff; 
+            border: 1px solid #e2e8f0; 
+            padding: 14px 18px; 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: 0.2s; 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        
+        .service-item:hover { 
+            border-color: #006a4e; 
+            background: #fdfdfd; 
+            transform: translateX(3px);
+            box-shadow: 0 4px 10px rgba(0,106,78,0.08); 
+        }
+
+        .service-left { display: flex; align-items: center; gap: 14px; }
+        .service-icon { font-size: 22px; background: #e6f4ea; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0; }
+        .service-details h3 { font-size: 14px; color: #0f172a; font-weight: bold; margin-bottom: 2px; }
+        .service-details p { font-size: 11px; color: #64748b; }
+
+        .service-arrow { font-size: 14px; color: #94a3b8; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-brand">অ্যাডমিন প্যানেল</div>
-        <ul class="sidebar-menu">
-            <li><a href="dashboard.html" class="active">📊 ড্যাশবোর্ড</a></li>
-            <li><a href="services.html">📑 নতুন সনদ তৈরি (সেবাসমূহ)</a></li>
-            <li><a href="verify.html">🔍 সনদ যাচাই প্যানেল</a></li>
-            <li><a href="login.html">🚪 লগআউট</a></li>
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <div class="top-navbar">
-            <div class="admin-info">স্বাগতম, প্রশাসক (অপারেটর)</div>
+    <!-- টপ নেভবার -->
+    <div class="top-navbar">
+        <div class="brand-title">🏛️ প্রশাসনিক প্যানেল</div>
+        <div class="user-info">
+            <span>অপারেটর (চরসিন্দুর ইউপি)</span>
             <a href="login.html" class="btn-logout">লগআউট</a>
         </div>
+    </div>
 
-        <div class="dashboard-body">
-            <div class="stats-grid">
-                <div class="stat-card"><h3>১,২৪৫</h3><p>মোট ইস্যুকৃত সনদ</p></div>
-                <div class="stat-card"><h3>৪২</h3><p>আজকের তৈরি সনদ</p></div>
-                <div class="stat-card"><h3>২২</h3><p>সচল সেবার ক্যাটাগরি</p></div>
-            </div>
-
-            <div class="quick-action">
-                <h3>দ্রুত পদক্ষেপ (সনদ নির্বাচন করুন)</h3>
-                <div class="action-btns">
-                    <a href="citizen-cert.html" class="btn-action">+ নাগরিকত্ব সনদ তৈরি করুন</a>
-                    <a href="services.html" class="btn-action">+ অন্যান্য সেবাসমূহ দেখুন</a>
-                </div>
-            </div>
+    <!-- মূল বডি -->
+    <div class="container">
+        
+        <div class="section-header">
+            <h2>নতুন আবেদন ও সেবা</h2>
+            <p>সনদ নির্বাচন করে আবেদন করুন অথবা যেকোনো সনদ যাচাই করুন</p>
         </div>
+
+        <!-- ওপরের ট্যাব অপশন (এখানে 'সনদ যাচাই' বা ভেরিফাই অপশন যুক্ত করা হয়েছে) -->
+        <div class="tabs-bar">
+            <a href="dashboard.html" class="tab-btn active">📑 নতুন আবেদন</a>
+            <a href="services.html" class="tab-btn">📋 সকল সেবাসমূহ</a>
+            <a href="verify.html" class="tab-btn">🔍 সনদ যাচাই (Verify)</a>
+            <a href="contact.html" class="tab-btn">📞 যোগাযোগ</a>
+        </div>
+
+        <!-- সেবাসমূহের তালিকা (List View) -->
+        <div class="service-list">
+            <a href="service-form.html?type=character" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">⭐</div>
+                    <div class="service-details"><h3>চারিত্রিক সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=citizen" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">🪪</div>
+                    <div class="service-details"><h3>নাগরিকত্ব সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=unmarried" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">👤</div>
+                    <div class="service-details"><h3>অবিবাহিত সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=landless" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">🌾</div>
+                    <div class="service-details"><h3>ভূমিহীন সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=income" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">💰</div>
+                    <div class="service-details"><h3>আয়ের প্রত্যয়ন</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=warish" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">👨‍👩‍👧‍👦</div>
+                    <div class="service-details"><h3>উত্তরাধিকার সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=trade" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">📜</div>
+                    <div class="service-details"><h3>ট্রেড লাইসেন্স</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+
+            <a href="service-form.html?type=death" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">⚰️</div>
+                    <div class="service-details"><h3>মৃত্যু সনদ</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+            
+            <a href="service-form.html?type=attestation" class="service-item">
+                <div class="service-left">
+                    <div class="service-icon">📄</div>
+                    <div class="service-details"><h3>প্রত্যয়নপত্র</h3><p>সরাসরি আবেদন ফরম</p></div>
+                </div>
+                <div class="service-arrow">›</div>
+            </a>
+        </div>
+
     </div>
 
 </body>
