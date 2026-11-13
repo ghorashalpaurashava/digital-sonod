@@ -3,149 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সনদ আবেদন ও প্রিন্ট ফরম্যাট</title>
+    <title>ডিজিটাল সেবা প্ল্যাটফর্ম - ইউনিয়ন ও পৌরসভা</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
-        body { background: #e2e8f0; padding: 20px; }
+        body { background-color: #f8fafc; color: #1e293b; }
+        .navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 38px; height: 38px; background: #e6f4ea; border: 2px solid #006a4e; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .logo-text h1 { font-size: 15px; color: #006a4e; font-weight: bold; }
+        .logo-text p { font-size: 11px; color: #64748b; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { text-decoration: none; font-size: 13px; color: #334155; font-weight: 500; }
+        .nav-links a:hover { color: #006a4e; }
+        .btn-active { color: #006a4e !important; font-weight: bold; }
 
-        .input-form-box { max-width: 210mm; margin: 0 auto 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid #006a4e; }
-        .input-form-box h3 { color: #006a4e; font-size: 18px; margin-bottom: 15px; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #334155; }
-        .form-group input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; }
-        .btn-generate { background: #006a4e; color: #fff; border: none; padding: 10px 20px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #006a4e 100%); color: #fff; padding: 45px 15px; text-align: center; }
+        .hero h2 { font-size: 22px; margin-bottom: 10px; }
+        .hero p { font-size: 13px; color: #cbd5e1; margin-bottom: 20px; }
+        .hero-btns { display: flex; justify-content: center; gap: 10px; }
+        .hero-btn { padding: 9px 18px; border-radius: 6px; font-size: 13px; font-weight: bold; text-decoration: none; }
+        .btn-verify { background: #fff; color: #006a4e; }
+        .btn-service { background: transparent; color: #fff; border: 1px solid #fff; }
 
-        .certificate-container { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 20mm; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; border: 5px double #006a4e; display: none; }
-        .cert-header { text-align: center; border-bottom: 2px solid #006a4e; padding-bottom: 15px; margin-bottom: 20px; }
-        .cert-header h1 { font-size: 22px; color: #006a4e; font-weight: bold; }
-        .cert-header h2 { font-size: 16px; color: #334155; margin-top: 5px; }
-        
-        .cert-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 30px; }
-        .cert-title-box { text-align: center; margin-bottom: 25px; }
-        .cert-title-box span { background: #006a4e; color: #fff; padding: 6px 20px; font-size: 15px; font-weight: bold; border-radius: 4px; }
-        
-        .cert-body { font-size: 14px; line-height: 2.2; color: #1e293b; text-align: justify; margin-bottom: 40px; }
-        .signatures { display: flex; justify-content: space-between; margin-top: 90px; font-size: 13px; text-align: center; }
-        .sig-line { border-top: 1px solid #334155; width: 180px; padding-top: 5px; margin-top: 40px; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 15px; }
+        .info-card { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border-left: 5px solid #006a4e; margin-bottom: 30px; }
+        .info-card h3 { font-size: 16px; color: #006a4e; margin-bottom: 10px; }
+        .info-card p { font-size: 13px; color: #475569; line-height: 1.6; }
 
-        @media print {
-            body { background: #fff; padding: 0; }
-            .input-form-box, .no-print { display: none !important; }
-            .certificate-container { display: block !important; box-shadow: none; border: 5px double #006a4e; width: 100%; height: 100%; }
-        }
+        .register-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px; margin-top: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .register-box h3 { color: #006a4e; font-size: 17px; margin-bottom: 8px; }
+        .register-box p { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .req-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #334155; }
+        .req-group input, .req-group select { width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; }
+        .btn-submit { background: #006a4e; color: #fff; border: none; padding: 10px 20px; font-size: 13px; font-weight: bold; border-radius: 6px; cursor: pointer; }
 
-        .action-bar { text-align: center; margin-top: 20px; display: none; }
-        .btn-print { background: #0f172a; color: #fff; border: none; padding: 10px 25px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 15px; font-size: 11px; margin-top: 40px; }
     </style>
 </head>
 <body>
-
-    <div class="input-form-box" id="inputFormBox">
-        <h3 id="formHeading">সনদ আবেদন - তথ্য পূরণ ফরম</h3>
-        <div class="form-grid">
-            <div class="form-group"><label>আবেদনকারীর নাম</label><input type="text" id="inputName" placeholder="নাম লিখুন" required></div>
-            <div class="form-group"><label>পিতার নাম</label><input type="text" id="inputFather" placeholder="পিতার নাম" required></div>
-            <div class="form-group"><label>মাতার নাম</label><input type="text" id="inputMother" placeholder="মাতার নাম" required></div>
-            <div class="form-group"><label>গ্রাম / হোল্ডিং</label><input type="text" id="inputAddress" placeholder="গ্রামের নাম" required></div>
-            <div class="form-group"><label>উপজেলা ও জেলা</label><input type="text" id="inputLocation" value="পলাশ, নরসিংদী" required></div>
-        </div>
-        <button type="button" class="btn-generate" onclick="generateCertificate()">সনদ তৈরি ও প্রিভিউ দেখুন</button>
-        <a href="dashboard.html" style="margin-left: 10px; text-decoration: none; font-size: 12px; color: #64748b;">← ড্যাশবোর্ডে ফিরে যান</a>
-    </div>
-
-    <div class="certificate-container" id="certContainer">
-        <div class="cert-header">
-            <h1 id="officeHeaderTitle">স্থানীয় সরকার কার্যালয়</h1>
-            <h2>পলাশ, নরসিংদী।</h2>
-        </div>
-        <div class="cert-meta">
-            <div>স্মারক নং: CP-2026-<span id="autoSerial">0842</span></div>
-            <div>তারিখ: <span id="autoDate">১৪ নভেম্বর, ২০২৬</span></div>
-        </div>
-        <div class="cert-title-box"><span id="certTitle">সনদপত্র</span></div>
-        <div class="cert-body" id="certTextBody">লোড হচ্ছে...</div>
-        <div class="signatures">
-            <div><div class="sig-line">সংশ্লিষ্ট ওয়ার্ড সদস্য / সচিব</div></div>
-            <div><div class="sig-line">চেয়ারম্যান / মেয়র</div></div>
+    <div class="navbar">
+        <a href="index.html" class="brand-container">
+            <div class="logo-icon">🏛️</div>
+            <div class="logo-text"><h1>ডিজিটাল সেবা প্ল্যাটফর্ম</h1><p>ইউনিয়ন ও পৌরসভা</p></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="btn-active">হোম</a>
+            <a href="services.html">সেবাসমূহ</a>
+            <a href="verify.html">সনদ যাচাই</a>
+            <a href="contact.html">যোগাযোগ</a>
         </div>
     </div>
 
-    <div class="action-bar" id="actionBar">
-        <button class="btn-print" onclick="window.print()">🖨️ সার্টিফিকেট প্রিন্ট বা PDF সেভ করুন</button>
-        <button type="button" onclick="editForm()" style="background:#64748b; color:#fff; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; margin-left:10px; font-size:13px;">তথ্য পরিবর্তন করুন</button>
+    <div class="hero">
+        <h2>নাগরিক সেবা ও অনলাইন সনদ যাচাই পোর্টাল</h2>
+        <p>যেকোনো স্থান থেকে আপনার প্রয়োজনীয় সেবার তথ্য জানুন এবং ইস্যুকৃত সনদের সত্যতা যাচাই করুন।</p>
+        <div class="hero-btns">
+            <a href="verify.html" class="hero-btn btn-verify">সনদ যাচাই করুন</a>
+            <a href="services.html" class="hero-btn btn-service">সেবাসমূহ দেখুন</a>
+        </div>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type') || 'citizen';
+    <div class="container">
+        <div class="info-card">
+            <h3>নাগরিকদের জন্য নির্দেশিকা</h3>
+            <p>অত্র ইউনিয়ন পরিষদ ও পৌরসভার আওতাধীন সকল নাগরিকগণ এই পোর্টালের মাধ্যমে বিভিন্ন সনদের বিবরণ দেখতে পারবেন। আপনার ইস্যুকৃত সার্টিফিকেটের সত্যতা যাচাই করতে ওপরের <strong>'সনদ যাচাই'</strong> অপশনে ক্লিক করে স্মারক নম্বর দিয়ে মুহূর্তেই যাচাই করে নিতে পারবেন।</p>
+        </div>
 
-        const serviceData = {
-            'citizen': {
-                title: 'নাগরিকত্ব সনদপত্র',
-                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র এলাকার একজন স্থায়ী বাসিন্দা বটে। আমার জানামতে তিনি রাষ্ট্রবিরোধী বা সমাজবিরোধী কোনো কাজের সাথে জড়িত নন এবং তাহার চরিত্র ও সুনাম সন্তোষজনক।'
-            },
-            'trade': {
-                title: 'ট্রেড লাইসেন্স সনদ',
-                text: 'এই মর্মে লাইসেন্স প্রদান করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা/স্বামী: <span id="outFather">---</span>, ব্যবসা প্রতিষ্ঠানের নাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এলাকার ব্যবসা পরিচালনার জন্য অত্র কার্যালয় হইতে এই ট্রেড লাইসেন্স মঞ্জুর করা হইল।'
-            },
-            'character': {
-                title: 'চারিত্রিক সনদপত্র',
-                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> কে আমি ব্যক্তিগতভাবে চিনি ও জানি। তিনি অত্র এলাকার একজন সৎ এবং চরিত্রবান ব্যক্তি।'
-            },
-            'unmarried': {
-                title: 'অবিবাহিত সনদপত্র',
-                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার স্থায়ী বাসিন্দা এবং আমার জানামতে তিনি অদ্যাবধি অবিবাহিত।'
-            },
-            'income': {
-                title: 'আয়ের প্রত্যয়নপত্র',
-                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একজন স্থায়ী বাসিন্দা। তাহার বাৎসরিক আয় সন্তোষজনক।'
-            }
-        };
+        <!-- নতুন প্রশাসনিক অ্যাকাউন্টের আবেদন ফর্ম (৫টি ফিল্ড সহ) -->
+        <div class="register-box">
+            <h3>নতুন ইউনিয়ন পরিষদ বা পৌরসভার প্রশাসনিক অ্যাকাউন্টের আবেদন</h3>
+            <p>আপনার কার্যালয়ের জন্য নতুন প্যানেল পেতে নিচের তথ্যগুলো পূরণ করুন।</p>
+            <form onsubmit="event.preventDefault(); alert('আপনার আবেদনটি সফলভাবে জমা হয়েছে।');">
+                <div class="req-grid">
+                    <div class="req-group">
+                        <label>কার্যালয়ের ধরন</label>
+                        <select required>
+                            <option value="">নির্বাচন করুন</option>
+                            <option>ইউনিয়ন পরিষদ</option>
+                            <option>পৌরসভা</option>
+                        </select>
+                    </div>
+                    <div class="req-group">
+                        <label>কর্মকর্তার নাম</label>
+                        <input type="text" placeholder="দায়িত্বপ্রাপ্ত কর্মকর্তার নাম" required>
+                    </div>
+                    <div class="req-group">
+                        <label>পদবী</label>
+                        <input type="text" placeholder="যেমন: সচিব / প্রশাসক" required>
+                    </div>
+                    <div class="req-group">
+                        <label>মোবাইল</label>
+                        <input type="text" placeholder="01XXXXXXXXX" required>
+                    </div>
+                    <div class="req-group" style="grid-column: 1 / -1;">
+                        <label>ইমেইল</label>
+                        <input type="email" placeholder="official@email.com" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">অনুমোদনের জন্য আবেদন পাঠান</button>
+            </form>
+        </div>
+    </div>
 
-        const currentService = serviceData[type] || serviceData['citizen'];
-        document.getElementById('certTitle').innerText = currentService.title;
-        document.getElementById('formHeading').innerText = currentService.title + ' - তথ্য পূরণ ফরম';
-        document.getElementById('certTextBody').innerHTML = currentService.text;
-
-        const currentOffice = localStorage.getItem('adminOffice');
-        if (currentOffice) {
-            document.getElementById('officeHeaderTitle').innerText = currentOffice;
-        }
-
-        function generateCertificate() {
-            const name = document.getElementById('inputName').value;
-            const father = document.getElementById('inputFather').value;
-            const mother = document.getElementById('inputMother').value;
-            const address = document.getElementById('inputAddress').value;
-            const location = document.getElementById('inputLocation').value;
-
-            if(!name || !father || !address) {
-                alert('দয়া করে ফর্মের প্রধান তথ্যগুলো পূরণ করুন!');
-                return;
-            }
-
-            document.getElementById('outName').innerText = name;
-            document.getElementById('outFather').innerText = father;
-            if(document.getElementById('outMother')) document.getElementById('outMother').innerText = mother;
-            document.getElementById('outAddress').innerText = address;
-            document.getElementById('outLocation').innerText = location;
-
-            const randomSerial = Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('autoSerial').innerText = randomSerial;
-
-            const today = new Date();
-            document.getElementById('autoDate').innerText = today.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
-
-            document.getElementById('inputFormBox').style.display = 'none';
-            document.getElementById('certContainer').style.display = 'block';
-            document.getElementById('actionBar').style.display = 'block';
-        }
-
-        function editForm() {
-            document.getElementById('inputFormBox').style.display = 'block';
-            document.getElementById('certContainer').style.display = 'none';
-            document.getElementById('actionBar').style.display = 'none';
-        }
-    </script>
+    <footer><p>&copy; ২০২৬ ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।</p></footer>
 </body>
 </html>
