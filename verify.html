@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সনদ যাচাই - ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; }
+        .navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { text-decoration: none; font-size: 13px; color: #334155; font-weight: 500; }
+        
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid #006a4e; }
+        h2 { color: #006a4e; font-size: 22px; text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #334155; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+        button { width: 100%; background: #006a4e; color: #fff; border: none; padding: 11px; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #004d37; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html" style="text-decoration:none; color:#006a4e; font-weight:bold;">ডিজিটাল সেবা প্ল্যাটফর্ম</a>
+        <div class="nav-links">
+            <a href="index.html">হোম</a>
+            <a href="services.html">সেবাসমূহ</a>
+            <a href="verify.html" style="color:#006a4e; font-weight:bold;">সনদ যাচাই</a>
+            <a href="login.html">প্রশাসনিক লগইন</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>অনলাইন সনদ যাচাইকরণ</h2>
+        <div class="form-group">
+            <label>সনদের ধরন নির্বাচন করুন</label>
+            <select>
+                <option>নাগরিকত্ব সনদ</option>
+                <option>ট্রেড লাইসেন্স</option>
+                <option>উত্তরাধিকার সনদ</option>
+                <option>চারিত্রিক সনদ</option>
+                <option>অন্যান্য সনদ / প্রত্যয়ন</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>সনদ নম্বর / স্মারক নম্বর লিখুন</label>
+            <input type="text" placeholder="যেমন: CERT-2026-XXXX">
+        </div>
+        <button onclick="alert('সনদটি যাচাই সম্পন্ন হয়েছে: এটি একটি বৈধ সনদ।')">যাচাই করুন</button>
+    </div>
+
+</body>
+</html>
