@@ -13,30 +13,51 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #334155; }
         input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        
-        .btn-login { width: 100%; background: #006a4e; color: #fff; border: none; padding: 11px; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; text-align: center; display: block; text-decoration: none; }
+        .btn-login { width: 100%; background: #006a4e; color: #fff; border: none; padding: 11px; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; text-align: center; display: block; }
         .btn-login:hover { background: #004d37; }
-        
+        .error-msg { color: #ef4444; font-size: 12px; text-align: center; margin-top: 10px; display: none; }
         .back-link { display: block; text-align: center; margin-top: 15px; font-size: 12px; color: #64748b; text-decoration: none; }
-        .back-link:hover { color: #006a4e; }
     </style>
 </head>
 <body>
 
     <div class="login-card">
         <h2>প্রশাসনিক প্যানেল</h2>
-        <p>শুধুমাত্র অনুমোদিত ইউজারদের জন্য</p>
+        <p>নির্দিষ্ট কার্যালয়ের তথ্য দিয়ে লগইন করুন</p>
+        
         <div class="form-group">
             <label>ইউজারনেম (Username)</label>
-            <input type="text" value="admin" placeholder="আপনার ইউজার আইডি দিন">
+            <input type="text" id="username" placeholder="যেমন: cu420 বা gp420">
         </div>
         <div class="form-group">
             <label>পাসওয়ার্ড (Password)</label>
-            <input type="password" value="12345" placeholder="••••••••">
+            <input type="password" id="password" placeholder="••••••••">
         </div>
-        <a href="dashboard.html" class="btn-login">লগইন করুন</a>
+        
+        <button type="button" class="btn-login" onclick="handleLogin()">লগইন করুন</button>
+        <div id="errorMsg" class="error-msg">ভুল ইউজারনেম অথবা পাসওয়ার্ড! আবার চেষ্টা করুন।</div>
+        
         <a href="index.html" class="back-link">← হোম পেজে ফিরে যান</a>
     </div>
 
+    <script>
+        function handleLogin() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (user === 'cu420' && pass === 'ai420') {
+                localStorage.setItem('adminOffice', 'চরসিন্দুর ইউনিয়ন পরিষদ');
+                localStorage.setItem('adminUser', 'cu420');
+                window.location.href = 'dashboard.html';
+            } else if (user === 'gp420' && pass === 'ai420') {
+                localStorage.setItem('adminOffice', 'ঘোড়াশাল পৌরসভা কার্যালয়');
+                localStorage.setItem('adminUser', 'gp420');
+                window.location.href = 'dashboard.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
