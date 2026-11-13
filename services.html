@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সকল সেবাসমূহ - ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: #f1f5f9; color: #1e293b; }
+
+        .navbar { background: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-text h1 { font-size: 15px; color: #006a4e; font-weight: bold; }
+        .logo-text p { font-size: 11px; color: #64748b; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { text-decoration: none; font-size: 13px; color: #334155; font-weight: 500; }
+        .nav-links a:hover { color: #006a4e; }
+
+        .container { max-width: 1200px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #006a4e; }
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h2 { color: #006a4e; font-size: 24px; margin-bottom: 5px; }
+        .header p { color: #64748b; font-size: 13px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .service-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; transition: 0.2s; }
+        .service-card:hover { transform: translateY(-2px); background: #ffffff; border-color: #006a4e; box-shadow: 0 4px 12px rgba(0,106,78,0.1); }
+        .service-icon { font-size: 24px; background: #e6f4ea; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
+        .service-info h3 { font-size: 14px; color: #0f172a; margin-bottom: 2px; font-weight: bold; }
+        .service-info p { font-size: 11px; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html" class="brand-container">
+            <div class="logo-text">
+                <h1>ডিজিটাল সেবা প্ল্যাটফর্ম</h1>
+                <p>ইউনিয়ন ও পৌরসভা ম্যানেজমেন্ট সিস্টেম</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">হোম</a>
+            <a href="services.html" style="color: #006a4e; font-weight: bold;">সেবাসমূহ</a>
+            <a href="verify.html">সনদ যাচাই</a>
+            <a href="login.html">প্রশাসনিক লগইন</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h2>প্রশাসনিক সেবাসমূহ ও সনদ তালিকা</h2>
+            <p>স্থানীয় সরকার পোর্টালে উপলব্ধ ২২টি অফিশিয়াল সেবা ও প্রত্যয়নপত্র</p>
+        </div>
+
+        <div class="services-grid">
+            <a href="citizen-cert.html" class="service-card"><div class="service-icon">🪪</div><div class="service-info"><h3>১. নাগরিকত্ব সনদ</h3><p>স্থায়ী বাসিন্দার পরিচয় প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">📜</div><div class="service-info"><h3>২. ট্রেড লাইসেন্স</h3><p>ব্যবসা পরিচালনার লাইসেন্স</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">👨‍👩‍👧‍👦</div><div class="service-info"><h3>৩. উত্তরাধিকার / ওয়ারিশান সনদ</h3><p>মৃত ব্যক্তির ওয়ারিশগণের বিবরণ</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">⭐</div><div class="service-info"><h3>৪. চারিত্রিক সনদ</h3><p>ব্যক্তির আচার-আচরণ প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">⚰️</div><div class="service-info"><h3>৫. মৃত্যু সনদ</h3><p>মৃত্যু তথ্য নথিভুক্তকরণ</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">📄</div><div class="service-info"><h3>৬. প্রত্যয়নপত্র</h3><p>সাধারণ দাপ্তরিক প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">👶</div><div class="service-info"><h3>৭. জন্ম নিবন্ধন প্রত্যয়ন</h3><p>জন্ম তথ্য নিশ্চিতকরণ</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🆔</div><div class="service-info"><h3>৮. এনআইডি সংশোধন প্রত্যয়ন</h3><p>জাতীয় পরিচয়পত্র সংশোধন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">💰</div><div class="service-info"><h3>৯. আয়ের প্রত্যয়ন</h3><p>মাসিক বা বাৎসরিক আয় সনদ</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">👤</div><div class="service-info"><h3>১০. অবিবাহিত সনদ</h3><p>অবিবাহিত মর্মে প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🌾</div><div class="service-info"><h3>১১. ভূমিহীন সনদ</h3><p>ভূমিহীন প্রমাণের প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🏠</div><div class="service-info"><h3>১২. স্থায়ী বাসিন্দা সনদ</h3><p>অত্র এলাকার স্থায়ী বসবাস</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">♿</div><div class="service-info"><h3>১৩. প্রতিবন্ধী সনদ</h3><p>শারীরিক প্রতিবন্ধকতা প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">👩‍مل</div><div class="service-info"><h3>১৪. বিধবা / স্বামী পরিত্যক্তা</h3><p>বিশেষ সামাজিক প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🏡</div><div class="service-info"><h3>১৫. পারিবারিক সনদ</h3><p>পরিবারের সদস্য বিবরণী</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🗳️</div><div class="service-info"><h3>১৬. নতুন ভোটার প্রত্যয়ন</h3><p>ভোটার তালিকাভুক্তির প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">🛡️</div><div class="service-info"><h3>১৭. অনাপত্তি প্রত্যয়ন (NOC)</h3><p>অনাপত্তি পত্র</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">💍</div><div class="service-info"><h3>১৮. পুনঃবিবাহ না হওয়া সনদ</h3><p>পুনঃবিবাহ সংক্রান্ত প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">💼</div><div class="service-info"><h3>১৯. বেকারত্ব সনদ</h3><p>বেকার মর্মে প্রত্যয়নপত্র</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">✍️</div><div class="service-info"><h3>২০. যেকোনো বিষয়ে দরখাস্ত</h3><p>সাধারণ দাপ্তরিক আবেদন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">✍️</div><div class="service-info"><h3>২১. একই নামের প্রত্যয়ন</h3><p>একই ব্যক্তির ভিন্ন নাম প্রত্যয়ন</p></div></a>
+            <a href="#" class="service-card"><div class="service-icon">📍</div><div class="service-info"><h3>২২. ভোটার এলাকা স্থানান্তর</h3><p>ভোটার এলাকা পরিবর্তন প্রত্যয়ন</p></div></a>
+        </div>
+    </div>
+
+</body>
+</html>
