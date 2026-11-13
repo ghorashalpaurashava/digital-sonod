@@ -3,111 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সনদপত্র প্রিন্ট প্রিভিউ</title>
+    <title>সনদ আবেদন ও প্রিন্ট ফরম্যাট</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
         body { background: #e2e8f0; padding: 20px; }
 
-        .certificate-container { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 20mm; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; border: 5px double #006a4e; }
+        .input-form-box { max-width: 210mm; margin: 0 auto 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid #006a4e; }
+        .input-form-box h3 { color: #006a4e; font-size: 18px; margin-bottom: 15px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #334155; }
+        .form-group input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; }
+        .btn-generate { background: #006a4e; color: #fff; border: none; padding: 10px 20px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+
+        .certificate-container { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 20mm; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; border: 5px double #006a4e; display: none; }
         .cert-header { text-align: center; border-bottom: 2px solid #006a4e; padding-bottom: 15px; margin-bottom: 20px; }
         .cert-header h1 { font-size: 22px; color: #006a4e; font-weight: bold; }
         .cert-header h2 { font-size: 16px; color: #334155; margin-top: 5px; }
-        .cert-header p { font-size: 12px; color: #64748b; }
-
+        
         .cert-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 30px; }
         .cert-title-box { text-align: center; margin-bottom: 25px; }
         .cert-title-box span { background: #006a4e; color: #fff; padding: 6px 20px; font-size: 15px; font-weight: bold; border-radius: 4px; }
-        .cert-body { font-size: 14px; line-height: 2; color: #1e293b; text-align: justify; margin-bottom: 40px; }
-
-        .signatures { display: flex; justify-content: space-between; margin-top: 80px; font-size: 13px; text-align: center; }
+        
+        .cert-body { font-size: 14px; line-height: 2.2; color: #1e293b; text-align: justify; margin-bottom: 40px; }
+        .signatures { display: flex; justify-content: space-between; margin-top: 90px; font-size: 13px; text-align: center; }
         .sig-line { border-top: 1px solid #334155; width: 180px; padding-top: 5px; margin-top: 40px; }
 
         @media print {
             body { background: #fff; padding: 0; }
-            .certificate-container { box-shadow: none; border: 5px double #006a4e; width: 100%; height: 100%; }
-            .no-print { display: none; }
+            .input-form-box, .no-print { display: none !important; }
+            .certificate-container { display: block !important; box-shadow: none; border: 5px double #006a4e; width: 100%; height: 100%; }
         }
 
-        .print-btn-bar { text-align: center; margin-bottom: 20px; }
-        .btn-print { background: #006a4e; color: #fff; border: none; padding: 10px 25px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; }
-        .btn-print:hover { background: #004d37; }
-        .btn-back { background: #64748b; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 13px; margin-left: 10px; display: inline-block; }
+        .action-bar { text-align: center; margin-top: 20px; display: none; }
+        .btn-print { background: #0f172a; color: #fff; border: none; padding: 10px 25px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="print-btn-bar no-print">
-        <button class="btn-print" onclick="window.print()">🖨️ এই সনদটি প্রিন্ট করুন</button>
-        <a href="services.html" class="btn-back">← সেবাসমূহ তালিকায় ফিরে যান</a>
+    <div class="input-form-box" id="inputFormBox">
+        <h3 id="formHeading">সনদ আবেদন - তথ্য পূরণ ফরম</h3>
+        <div class="form-grid">
+            <div class="form-group"><label>আবেদনকারীর নাম</label><input type="text" id="inputName" placeholder="নাম লিখুন" required></div>
+            <div class="form-group"><label>পিতার নাম</label><input type="text" id="inputFather" placeholder="পিতার নাম" required></div>
+            <div class="form-group"><label>মাতার নাম</label><input type="text" id="inputMother" placeholder="মাতার নাম" required></div>
+            <div class="form-group"><label>গ্রাম / হোল্ডিং</label><input type="text" id="inputAddress" placeholder="গ্রামের নাম" required></div>
+            <div class="form-group"><label>উপজেলা ও জেলা</label><input type="text" id="inputLocation" value="পলাশ, নরসিংদী" required></div>
+        </div>
+        <button type="button" class="btn-generate" onclick="generateCertificate()">সনদ তৈরি ও প্রিভিউ দেখুন</button>
+        <a href="dashboard.html" style="margin-left: 10px; text-decoration: none; font-size: 12px; color: #64748b;">← ড্যাশবোর্ডে ফিরে যান</a>
     </div>
 
-    <div class="certificate-container">
+    <div class="certificate-container" id="certContainer">
         <div class="cert-header">
-            <h1>চরসিন্দুর ইউনিয়ন পরিষদ / ঘোড়াশাল পৌরসভা</h1>
+            <h1 id="officeHeaderTitle">স্থানীয় সরকার কার্যালয়</h1>
             <h2>পলাশ, নরসিংদী।</h2>
-            <p>ওয়েবসাইট: www.eparishad.com</p>
         </div>
-
         <div class="cert-meta">
-            <div>স্মারক নং: CP-2026-0842</div>
-            <div>তারিখ: ১৪ নভেম্বর, ২০২৬</div>
+            <div>স্মারক নং: CP-2026-<span id="autoSerial">0842</span></div>
+            <div>তারিখ: <span id="autoDate">১৪ নভেম্বর, ২০২৬</span></div>
         </div>
-
-        <div class="cert-title-box">
-            <!-- ডাইনামিক সেবার নাম এখানে শো করবে -->
-            <span id="certTitle">নাগরিকত্ব সনদপত্র</span>
-        </div>
-
-        <div class="cert-body" id="certBody">
-            এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong>জনাব মো: ইশতিয়াক জাহান মাহিন</strong>, পিতা: মো: পনির ভূঁইয়া, মাতা: নাজমা সুলতানা, গ্রাম/হোল্ডিং: দারিহাওলাপাড়া, ডাকঘর: পলাশ - ১৬১০, উপজেলা: পলাশ, জেলা: নরসিংদী জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়নের/পৌরসভার একজন স্থায়ী বাসিন্দা বটে। আমার জানামতে তিনি রাষ্ট্রবিরোধী বা সমাজবিরোধী কোনো কাজের সাথে জড়িত নিতেন এবং তাহার চরিত্র ও সুনাম সন্তোষজনক।<br><br>
-            আমি তাহার সর্বাঙ্গীন সাফল্য ও উজ্জ্বল ভবিষ্যৎ কামনা করি।
-        </div>
-
+        <div class="cert-title-box"><span id="certTitle">সনদপত্র</span></div>
+        <div class="cert-body" id="certTextBody">লোড হচ্ছে...</div>
         <div class="signatures">
-            <div>
-                <div class="sig-line">সংশ্লিষ্ট ওয়ার্ড সদস্য / সচিব</div>
-            </div>
-            <div>
-                <div class="sig-line">চেয়ারম্যান / মেয়র</div>
-            </div>
+            <div><div class="sig-line">সংশ্লিষ্ট ওয়ার্ড সদস্য / সচিব</div></div>
+            <div><div class="sig-line">চেয়ারম্যান / মেয়র</div></div>
         </div>
+    </div>
+
+    <div class="action-bar" id="actionBar">
+        <button class="btn-print" onclick="window.print()">🖨️ সার্টিফিকেট প্রিন্ট বা PDF সেভ করুন</button>
+        <button type="button" onclick="editForm()" style="background:#64748b; color:#fff; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; margin-left:10px; font-size:13px;">তথ্য পরিবর্তন করুন</button>
     </div>
 
     <script>
-        // ইউআরএল (URL) চেক করে যে সেবাটিতে ক্লিক করা হয়েছে তার নাম ও বিবরণ বসিয়ে দেওয়া
         const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type');
+        const type = urlParams.get('type') || 'citizen';
 
-        const titles = {
-            'citizen': 'নাগরিকত্ব সনদপত্র',
-            'trade': 'ট্রেড লাইসেন্স সনদ',
-            'warish': 'উত্তরাধিকার / ওয়ারিশান সনদপত্র',
-            'character': 'চারিত্রিক সনদপত্র',
-            'death': 'মৃত্যু সনদপত্র',
-            'attestation': 'প্রত্যয়নপত্র',
-            'birth': 'জন্ম নিবন্ধন প্রত্যয়নপত্র',
-            'nid': 'এনআইডি সংশোধন প্রত্যয়নপত্র',
-            'income': 'আয়ের প্রত্যয়নপত্র',
-            'unmarried': 'অবিবাহিত সনদপত্র',
-            'landless': 'ভূমিহীন সনদপত্র',
-            'resident': 'স্থায়ী বাসিন্দা সনদপত্র',
-            'disable': 'প্রতিবন্ধী সনদপত্র',
-            'widow': 'বিধবা / স্বামী পরিত্যক্তা সনদপত্র',
-            'family': 'পারিবারিক সনদপত্র',
-            'voter': 'নতুন ভোটার প্রত্যয়নপত্র',
-            'noc': 'অনাপত্তি প্রত্যয়নপত্র (NOC)',
-            'remarriage': 'পুনঃবিবাহ না হওয়া সনদপত্র',
-            'unemployed': 'বেকারত্ব সনদপত্র',
-            'application': 'দাপ্তরিক দরখাস্ত ও প্রত্যয়ন',
-            'same_name': 'একই নামের প্রত্যয়নপত্র',
-            'transfer': 'ভোটার এলাকা স্থানান্তর প্রত্যয়নপত্র'
+        const serviceData = {
+            'citizen': {
+                title: 'নাগরিকত্ব সনদপত্র',
+                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র এলাকার একজন স্থায়ী বাসিন্দা বটে। আমার জানামতে তিনি রাষ্ট্রবিরোধী বা সমাজবিরোধী কোনো কাজের সাথে জড়িত নন এবং তাহার চরিত্র ও সুনাম সন্তোষজনক।'
+            },
+            'trade': {
+                title: 'ট্রেড লাইসেন্স সনদ',
+                text: 'এই মর্মে লাইসেন্স প্রদান করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা/স্বামী: <span id="outFather">---</span>, ব্যবসা প্রতিষ্ঠানের নাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এলাকার ব্যবসা পরিচালনার জন্য অত্র কার্যালয় হইতে এই ট্রেড লাইসেন্স মঞ্জুর করা হইল।'
+            },
+            'character': {
+                title: 'চারিত্রিক সনদপত্র',
+                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> কে আমি ব্যক্তিগতভাবে চিনি ও জানি। তিনি অত্র এলাকার একজন সৎ এবং চরিত্রবান ব্যক্তি।'
+            },
+            'unmarried': {
+                title: 'অবিবাহিত সনদপত্র',
+                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার স্থায়ী বাসিন্দা এবং আমার জানামতে তিনি অদ্যাবধি অবিবাহিত।'
+            },
+            'income': {
+                title: 'আয়ের প্রত্যয়নপত্র',
+                text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একজন স্থায়ী বাসিন্দা। তাহার বাৎসরিক আয় সন্তোষজনক।'
+            }
         };
 
-        if (type && titles[type]) {
-            document.getElementById('certTitle').innerText = titles[type];
-            document.body.querySelector('title').innerText = titles[type] + ' - প্রিন্ট কপি';
+        const currentService = serviceData[type] || serviceData['citizen'];
+        document.getElementById('certTitle').innerText = currentService.title;
+        document.getElementById('formHeading').innerText = currentService.title + ' - তথ্য পূরণ ফরম';
+        document.getElementById('certTextBody').innerHTML = currentService.text;
+
+        const currentOffice = localStorage.getItem('adminOffice');
+        if (currentOffice) {
+            document.getElementById('officeHeaderTitle').innerText = currentOffice;
+        }
+
+        function generateCertificate() {
+            const name = document.getElementById('inputName').value;
+            const father = document.getElementById('inputFather').value;
+            const mother = document.getElementById('inputMother').value;
+            const address = document.getElementById('inputAddress').value;
+            const location = document.getElementById('inputLocation').value;
+
+            if(!name || !father || !address) {
+                alert('দয়া করে ফর্মের প্রধান তথ্যগুলো পূরণ করুন!');
+                return;
+            }
+
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outFather').innerText = father;
+            if(document.getElementById('outMother')) document.getElementById('outMother').innerText = mother;
+            document.getElementById('outAddress').innerText = address;
+            document.getElementById('outLocation').innerText = location;
+
+            const randomSerial = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('autoSerial').innerText = randomSerial;
+
+            const today = new Date();
+            document.getElementById('autoDate').innerText = today.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            document.getElementById('inputFormBox').style.display = 'none';
+            document.getElementById('certContainer').style.display = 'block';
+            document.getElementById('actionBar').style.display = 'block';
+        }
+
+        function editForm() {
+            document.getElementById('inputFormBox').style.display = 'block';
+            document.getElementById('certContainer').style.display = 'none';
+            document.getElementById('actionBar').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
