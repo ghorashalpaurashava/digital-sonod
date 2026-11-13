@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রশাসনিক ড্যাশবোর্ড</title>
+    <title>প্রশাসনিক ড্যাশবোর্ড - ২২টি সেবা</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
         body { background-color: #f8fafc; color: #1e293b; }
@@ -14,16 +14,16 @@
         .admin-details p { font-size: 11px; color: #64748b; }
         .btn-logout { background: #ef4444; color: #fff; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: bold; }
         
-        .container { max-width: 800px; margin: 25px auto; padding: 0 15px; }
+        .container { max-width: 900px; margin: 25px auto; padding: 0 15px; }
         .section-header h2 { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 3px; }
         .section-header p { font-size: 12px; color: #64748b; margin-bottom: 15px; }
 
-        .service-list { display: flex; flex-direction: column; gap: 10px; }
-        .service-item { background: #ffffff; border: 1px solid #e2e8f0; padding: 14px 18px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; }
-        .service-item:hover { border-color: #006a4e; background: #fdfdfd; }
+        .service-list { display: flex; flex-direction: column; gap: 8px; }
+        .service-item { background: #ffffff; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; transition: 0.2s; }
+        .service-item:hover { border-color: #006a4e; background: #fdfdfd; transform: translateX(3px); }
         .service-left { display: flex; align-items: center; gap: 14px; }
-        .service-icon { font-size: 22px; background: #e6f4ea; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
-        .service-details h3 { font-size: 14px; color: #0f172a; font-weight: bold; }
+        .service-icon { font-size: 20px; background: #e6f4ea; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
+        .service-details h3 { font-size: 13px; color: #0f172a; font-weight: bold; }
         .service-details p { font-size: 11px; color: #64748b; }
     </style>
 </head>
@@ -41,16 +41,33 @@
 
     <div class="container">
         <div class="section-header">
-            <h2>নতুন আবেদন ও সনদ প্যানেল</h2>
-            <p>যেকোনো সেবায় ক্লিক করে তথ্য পূরণ ও প্রিন্ট করুন</p>
+            <h2>প্রশাসনিক সনদ ও সেবা প্যানেল (২২টি সেবা)</h2>
+            <p>প্রয়োজনীয় সেবায় ক্লিক করে তথ্য পূরণ ও প্রিন্ট করুন</p>
         </div>
 
         <div class="service-list">
-            <a href="service-form.html?type=citizen" class="service-item"><div class="service-left"><div class="service-icon">🪪</div><div class="service-details"><h3>নাগরিকত্ব সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
-            <a href="service-form.html?type=trade" class="service-item"><div class="service-left"><div class="service-icon">📜</div><div class="service-details"><h3>ট্রেড লাইসেন্স</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
-            <a href="service-form.html?type=character" class="service-item"><div class="service-left"><div class="service-icon">⭐</div><div class="service-details"><h3>চারিত্রিক সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
-            <a href="service-form.html?type=unmarried" class="service-item"><div class="service-left"><div class="service-icon">👤</div><div class="service-details"><h3>অবিবাহিত সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
-            <a href="service-form.html?type=income" class="service-item"><div class="service-left"><div class="service-icon">💰</div><div class="service-details"><h3>আয়ের প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=citizen" class="service-item"><div class="service-left"><div class="service-icon">🪪</div><div class="service-details"><h3>১. নাগরিকত্ব সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=trade" class="service-item"><div class="service-left"><div class="service-icon">📜</div><div class="service-details"><h3>২. ট্রেড লাইসেন্স</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=character" class="service-item"><div class="service-left"><div class="service-icon">⭐</div><div class="service-details"><h3>৩. চারিত্রিক সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=warish" class="service-item"><div class="service-left"><div class="service-icon">👨‍👩‍👧‍👦</div><div class="service-details"><h3>৪. উত্তরাধিকার সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=income" class="service-item"><div class="service-left"><div class="service-icon">💰</div><div class="service-details"><h3>৫. আয়ের প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=death" class="service-item"><div class="service-left"><div class="service-icon">⚰️</div><div class="service-details"><h3>৬. মৃত্যু সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=unmarried" class="service-item"><div class="service-left"><div class="service-icon">👤</div><div class="service-details"><h3>৭. অবিবাহিত সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=landless" class="service-item"><div class="service-left"><div class="service-icon">🌾</div><div class="service-details"><h3>৮. ভূমিহীন সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=attestation" class="service-item"><div class="service-left"><div class="service-icon">📄</div><div class="service-details"><h3>৯. প্রত্যয়নপত্র</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=family" class="service-item"><div class="service-left"><div class="service-icon">🏠</div><div class="service-details"><h3>১০. পারিবারিক সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=insolvency" class="service-item"><div class="service-left"><div class="service-icon">🤝</div><div class="service-details"><h3>১১. আর্থিক অসচ্ছলতা সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=student" class="service-item"><div class="service-left"><div class="service-icon">🎓</div><div class="service-details"><h3>১২. ছাত্রত্ব সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=electricity" class="service-item"><div class="service-left"><div class="service-icon">🔥</div><div class="service-details"><h3>১৩. বিদ্যুৎ সংযোগ প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=water" class="service-item"><div class="service-left"><div class="service-icon">🚰</div><div class="service-details"><h3>১৪. পানি সংযোগ প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=house" class="service-item"><div class="service-left"><div class="service-icon">🏗️</div><div class="service-details"><h3>১৫. ঘর নির্মাণ অনুমতি</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=driving" class="service-item"><div class="service-left"><div class="service-icon">🚗</div><div class="service-details"><h3>১৬. ড্রাইভিং লাইসেন্স প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=correction" class="service-item"><div class="service-left"><div class="service-icon">🛡️</div><div class="service-details"><h3>১৭. নাম ও বয়স সংশোধন প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=experience" class="service-item"><div class="service-left"><div class="service-icon">💼</div><div class="service-details"><h3>১৮. অভিজ্ঞতা সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=medical" class="service-item"><div class="service-left"><div class="service-icon">🩺</div><div class="service-details"><h3>১৯. চিকিৎসা অনুদান প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=farmer" class="service-item"><div class="service-left"><div class="service-icon">🌾</div><div class="service-details"><h3>২০. মৎস্যজীবী / কৃষক সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=guardian" class="service-item"><div class="service-left"><div class="service-icon">⚖️</div><div class="service-details"><h3>২১. অভিভাবকত্ব সনদ</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
+            <a href="service-form.html?type=other" class="service-item"><div class="service-left"><div class="service-icon">🌐</div><div class="service-details"><h3>২২. অন্যান্য প্রত্যয়ন</h3><p>ফরম পূরণ ও প্রিন্ট</p></div></div><div>›</div></a>
         </div>
     </div>
 
