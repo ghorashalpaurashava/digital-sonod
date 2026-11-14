@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সনদ আবেদন ও প্রিন্ট ফরম্যাট</title>
+    <title>জাতীয়তা সনদ প্রিন্ট ফরম্যাট</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', sans-serif; }
         body { background: #e2e8f0; padding: 20px; }
@@ -15,23 +15,36 @@
         .form-group input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; }
         .btn-generate { background: #006a4e; color: #fff; border: none; padding: 10px 20px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
 
-        .certificate-container { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 20mm; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; border: 5px double #006a4e; display: none; }
-        .cert-header { text-align: center; border-bottom: 2px solid #006a4e; padding-bottom: 15px; margin-bottom: 20px; }
-        .cert-header h1 { font-size: 22px; color: #006a4e; font-weight: bold; }
-        .cert-header h2 { font-size: 16px; color: #334155; margin-top: 5px; }
+        /* প্যাডের ওপর প্রিন্ট করার জন্য কন্টেইনার */
+        .certificate-container { 
+            width: 210mm; 
+            min-height: 297mm; 
+            margin: 0 auto; 
+            background: transparent; 
+            padding: 88mm 20mm 0 20mm; 
+            position: relative; 
+            display: none;
+        }
+
+        /* মূল লেখার বডি (ফন্ট সাইজ ১৫ পিক্সেল) */
+        .cert-body { font-size: 15px; line-height: 2.6; color: #1e293b; text-align: justify; margin-bottom: 35px; }
         
-        .cert-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 30px; }
-        .cert-title-box { text-align: center; margin-bottom: 25px; }
-        .cert-title-box span { background: #006a4e; color: #fff; padding: 6px 20px; font-size: 15px; font-weight: bold; border-radius: 4px; }
-        
-        .cert-body { font-size: 14px; line-height: 2.2; color: #1e293b; text-align: justify; margin-bottom: 40px; }
-        .signatures { display: flex; justify-content: space-between; margin-top: 90px; font-size: 13px; text-align: center; }
-        .sig-line { border-top: 1px solid #334155; width: 180px; padding-top: 5px; margin-top: 40px; }
+        /* শুভকামনা অংশ (৫টি স্পেসসহ) */
+        .wishes { font-size: 14px; color: #1e293b; }
 
         @media print {
-            body { background: #fff; padding: 0; }
-            .input-form-box, .no-print { display: none !important; }
-            .certificate-container { display: block !important; box-shadow: none; border: 5px double #006a4e; width: 100%; height: 100%; }
+            body { background: #fff; padding: 0; margin: 0; }
+            .input-form-box, .no-print, .action-bar { display: none !important; }
+            .certificate-container { 
+                display: block !important; 
+                width: 100% !important; 
+                height: auto !important; 
+                min-height: auto !important; 
+                padding-top: 88mm !important; 
+                box-shadow: none !important;
+                border: none !important;
+                page-break-after: avoid;
+            }
         }
 
         .action-bar { text-align: center; margin-top: 20px; display: none; }
@@ -41,89 +54,45 @@
 <body>
 
     <div class="input-form-box" id="inputFormBox">
-        <h3 id="formHeading">সনদ আবেদন - তথ্য পূরণ ফরম</h3>
+        <h3 id="formHeading">জাতীয়তা সনদ - তথ্য পূরণ ফরম</h3>
         <div class="form-grid">
             <div class="form-group"><label>আবেদনকারীর নাম</label><input type="text" id="inputName" placeholder="নাম লিখুন" required></div>
             <div class="form-group"><label>পিতার নাম</label><input type="text" id="inputFather" placeholder="পিতার নাম" required></div>
             <div class="form-group"><label>মাতার নাম</label><input type="text" id="inputMother" placeholder="মাতার নাম" required></div>
-            <div class="form-group"><label>গ্রাম / হোল্ডিং / প্রতিষ্ঠান</label><input type="text" id="inputAddress" placeholder="ঠিকানা লিখুন" required></div>
+            <div class="form-group"><label>স্থায়ী ঠিকানা (গ্রাম/মহল্লা)</label><input type="text" id="inputAddress" placeholder="যেমন: পলাশ ভাগ্যের পাড়া" required></div>
+            <div class="form-group"><label>বাসা / হোল্ডিং নং</label><input type="text" id="inputHolding" placeholder="যেমন: ১৩৭/২" required></div>
+            <div class="form-group"><label>ওয়ার্ড নং</label><input type="text" id="inputWard" placeholder="যেমন: ০২" required></div>
             <div class="form-group"><label>উপজেলা ও জেলা</label><input type="text" id="inputLocation" value="পলাশ, নরসিংদী" required></div>
         </div>
-        <button type="button" class="btn-generate" onclick="generateCertificate()">সনদ তৈরি ও প্রিভিউ দেখুন</button>
-        <a href="dashboard.html" style="margin-left: 10px; text-decoration: none; font-size: 12px; color: #64748b;">← ড্যাশবোর্ডে ফিরে যান</a>
+        <button type="button" class="btn-generate" onclick="generateCertificate()">লেখাটুকু তৈরি করুন</button>
+        <a href="ghorashal-dashboard.html" style="margin-left: 10px; text-decoration: none; font-size: 12px; color: #64748b;">← ড্যাশবোর্ডে ফিরে যান</a>
     </div>
 
+    <!-- প্যাডের ওপর প্রিন্ট হওয়ার জন্য ফিক্সড অংশ -->
     <div class="certificate-container" id="certContainer">
-        <div class="cert-header">
-            <h1 id="officeHeaderTitle">স্থানীয় সরকার কার্যালয়</h1>
-            <h2>পলাশ, নরসিংদী।</h2>
+        <div class="cert-body" id="certTextBody">
+            &nbsp;&nbsp;এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, স্থায়ী ঠিকানা: গ্রাম/মহল্লা: <span id="outAddress">---</span>, হোল্ডিং নং: <span id="outHolding">---</span>, ওয়ার্ড নং: <span id="outWard">---</span>, ডাকঘর: পলাশ-১৬১০, উপজেলা: পলাশ, জেলা: নরসিংদী। সংশ্লিষ্ট ওয়ার্ডের দায়িত্বপ্রাপ্ত সদস্য এর সহায়তায় তথ্যমতে ও যাচাইয়ের ভিত্তিতে অস্থায়ী সনদপত্রটি ইস্যু করা হলো। বাসিন্দা এবং জন্মগতভাবে বাংলাদেশের নাগরিক।
         </div>
-        <div class="cert-meta">
-            <div>স্মারক নং: CP-2026-<span id="autoSerial">0842</span></div>
-            <div>তারিখ: <span id="autoDate">১৪ নভেম্বর, ২০২৬</span></div>
-        </div>
-        <div class="cert-title-box"><span id="certTitle">সনদপত্র</span></div>
-        <div class="cert-body" id="certTextBody">লোড হচ্ছে...</div>
-        <div class="signatures">
-            <div><div class="sig-line">সংশ্লিষ্ট ওয়ার্ড সদস্য / সচিব</div></div>
-            <div><div class="sig-line">চেয়ারম্যান / মেয়র</div></div>
-        </div>
+
+        <div class="wishes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;আমি তার সর্বাঙ্গীন সাফল্য কামনা করি।</div>
     </div>
 
     <div class="action-bar" id="actionBar">
-        <button class="btn-print" onclick="window.print()">🖨️ সার্টিফিকেট প্রিন্ট বা PDF সেভ করুন</button>
+        <button class="btn-print" onclick="window.print()">🖨️ প্যাডে প্রিন্ট করুন</button>
         <button type="button" onclick="editForm()" style="background:#64748b; color:#fff; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; margin-left:10px; font-size:13px;">তথ্য পরিবর্তন করুন</button>
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type') || 'citizen';
-
-        // ২২টি সেবার জন্য ডাইনামিক ডেটা এবং টেক্সট
-        const serviceData = {
-            'citizen': { title: 'নাগরিকত্ব সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম/হোল্ডিং: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র এলাকার একজন স্থায়ী বাসিন্দা বটে। তাহার চরিত্র ও সুনাম সন্তোষজনক।' },
-            'trade': { title: 'ট্রেড লাইসেন্স সনদ', text: 'এই মর্মে লাইসেন্স প্রদান করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা/স্বামী: <span id="outFather">---</span>, ব্যবসা প্রতিষ্ঠানের নাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এলাকায় ব্যবসা পরিচালনার জন্য অত্র কার্যালয় হইতে এই ট্রেড লাইসেন্স মঞ্জুর করা হইল।' },
-            'character': { title: 'চারিত্রিক সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> কে আমি ব্যক্তিগতভাবে চিনি ও জানি। তিনি অত্র এলাকার একজন সৎ এবং চরিত্রবান ব্যক্তি।' },
-            'warish': { title: 'উত্তরাধিকার সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, মৃত <span id="outFather">---</span> এর ওয়ারিশগণের বিবরণ অত্র কার্যালয়ের রেকর্ডপত্র অনুযায়ী যাচাই করা হইয়াছে এবং জীবিত ওয়ারিশগণের অনুকূলে এই সনদ ইস্যু করা হইল।' },
-            'income': { title: 'আয়ের প্রত্যয়নপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার স্থায়ী বাসিন্দা। তাহার বাৎসরিক আনুমানিক আয় সন্তোষজনক।' },
-            'death': { title: 'মৃত্যু সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা/স্বামী: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকায় স্থায়ীভাবে বসবাসকালে মৃত্যুবরণ করিয়াছেন।' },
-            'unmarried': { title: 'অবিবাহিত সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার স্থায়ী বাসিন্দা এবং অদ্যাবধি অবিবাহিত।' },
-            'landless': { title: 'ভূমিহীন সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> স্থানীয় তদন্ত অনুযায়ী একজন প্রকৃত ভূমিহীন ব্যক্তি।' },
-            'attestation': { title: 'প্রত্যয়নপত্র', text: 'এই মর্মে সাধারণ দাপ্তরিক কাজে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এর প্রদত্ত তথ্যাবলী সঠিক বলিয়া প্রতীয়মান হয়।' },
-            'family': { title: 'পারিবারিক সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একটি সম্মানিত পরিবারের স্থায়ী প্রধান ও সদস্য বটে।' },
-            'insolvency': { title: 'আর্থিক অসচ্ছলতা সনদ', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একজন অত্যন্ত দরিদ্র ও আর্থিকভাবে অসচ্ছল ব্যক্তি।' },
-            'student': { title: 'ছাত্রত্ব সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, মাতা: <span id="outMother">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একজন নিয়মিত শিক্ষার্থী।' },
-            'electricity': { title: 'বিদ্যুৎ সংযোগ প্রত্যয়নপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এর নিজ বসতবাড়িতে নতুন বিদ্যুৎ সংযোগ প্রদানে অত্র কার্যালয়ের কোনো আপত্তি নাই।' },
-            'water': { title: 'পানি সংযোগ প্রত্যয়নপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এর ঠিকানায় নতুন পানি সংযোগ প্রদানে অত্র কার্যালয়ের সুপারিশ রয়েছে।' },
-            'house': { title: 'ঘর নির্মাণ অনুমতিপত্র', text: 'এই মর্মে অনুমতি প্রদান করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> তার নিজ জমিতে আইনসম্মতভাবে ঘর বা স্থাপনা নির্মাণ করতে পারবেন।' },
-            'driving': { title: 'ড্রাইভিং লাইসেন্স প্রত্যয়ন', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> একজন দক্ষ চালক এবং তার ড্রাইভিং লাইসেন্স প্রাপ্তির জন্য সুপারিশ করা হইল।' },
-            'correction': { title: 'নাম ও বয়স সংশোধন প্রত্যয়ন', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এর নথিপত্র অনুযায়ী নাম ও বয়স সংশোধন সংক্রান্ত আবেদনটি যাচাইকৃত।' },
-            'experience': { title: 'অভিজ্ঞতা সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকায় বিভিন্ন সামাজিক ও দাপ্তরিক কার্যক্রমে সন্তোষজনক অভিজ্ঞতা অর্জন করিয়াছেন।' },
-            'medical': { title: 'চিকিৎসা অনুদান প্রত্যয়ন', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> গুরুতর অসুস্থ এবং তাহার উন্নত চিকিৎসার জন্য আর্থিক অনুদান প্রয়োজন।' },
-            'farmer': { title: 'মৎস্যজীবী / কৃষক সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> অত্র এলাকার একজন প্রকৃত ও নিবন্ধিত কৃষক/মৎস্যজীবী।' },
-            'guardian': { title: 'অভিভাবকত্ব সনদপত্র', text: 'এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> বৈধভাবে নির্দিষ্ট ব্যক্তির আইনগত অভিভাবক হিসেবে দায়িত্ব পালন করিতেছেন।' },
-            'other': { title: 'বিশেষ প্রত্যয়নপত্র', text: 'এই মর্মে বিশেষ প্রয়োজনে প্রত্যয়ন করা যাইতেছে যে, <strong><span id="outName">---</span></strong>, পিতা: <span id="outFather">---</span>, গ্রাম: <span id="outAddress">---</span>, উপজেলা ও জেলা: <span id="outLocation">---</span> এর অনুকূলে এই বিশেষ সনদ ইস্যু করা হইল।' }
-        };
-
-        const currentService = serviceData[type] || serviceData['citizen'];
-        document.getElementById('certTitle').innerText = currentService.title;
-        document.getElementById('formHeading').innerText = currentService.title + ' - তথ্য পূরণ ফরম';
-        document.getElementById('certTextBody').innerHTML = currentService.text;
-
-        const currentOffice = localStorage.getItem('adminOffice');
-        if (currentOffice) {
-            document.getElementById('officeHeaderTitle').innerText = currentOffice;
-        }
-
         function generateCertificate() {
             const name = document.getElementById('inputName').value;
             const father = document.getElementById('inputFather').value;
             const mother = document.getElementById('inputMother').value;
             const address = document.getElementById('inputAddress').value;
-            const location = document.getElementById('inputLocation').value;
+            const holding = document.getElementById('inputHolding').value;
+            const ward = document.getElementById('inputWard').value;
 
-            if(!name || !father || !address) {
-                alert('দয়া করে ফর্মের প্রধান তথ্যগুলো পূরণ করুন!');
+            if(!name || !father || !address || !holding || !ward) {
+                alert('দয়া করে ফর্মের সবকটি তথ্য সঠিকভাবে পূরণ করুন!');
                 return;
             }
 
@@ -131,13 +100,8 @@
             document.getElementById('outFather').innerText = father;
             if(document.getElementById('outMother')) document.getElementById('outMother').innerText = mother;
             document.getElementById('outAddress').innerText = address;
-            document.getElementById('outLocation').innerText = location;
-
-            const randomSerial = Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('autoSerial').innerText = randomSerial;
-
-            const today = new Date();
-            document.getElementById('autoDate').innerText = today.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('outHolding').innerText = holding;
+            document.getElementById('outWard').innerText = ward;
 
             document.getElementById('inputFormBox').style.display = 'none';
             document.getElementById('certContainer').style.display = 'block';
